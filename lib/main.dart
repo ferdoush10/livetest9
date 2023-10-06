@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -8,88 +10,168 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: ButtonScreen(),
+      home: HomePage(),
     );
   }
 }
 
-class ButtonScreen extends StatefulWidget {
-  const ButtonScreen({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-
-  // ignore: library_private_types_in_public_api
-  _ButtonScreenState createState() => _ButtonScreenState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _ButtonScreenState extends State<ButtonScreen> {
-  int _selectedButtonIndex = -1; // Index of the selected button
-
-  void _showSnackbar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-    ));
-  }
-
-  Widget _buildButton(String label, int index) {
-    bool isSelected = index == _selectedButtonIndex;
-    return ElevatedButton(
-      onPressed: () {
-        setState(() {
-          _selectedButtonIndex = index;
-          for (int i = 0; i < 6; i++) {
-            if (i != index) {
-              _buttons[i] = _defaultColor;
-            }
-          }
-          _buttons[index] = isSelected ? _defaultColor : _selectedColor;
-          _showSnackbar('Selected Size: $label'); // Show Snackbar
-        });
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: _buttons[index],
-        foregroundColor: Colors.white,
-      ),
-      child: Text(label),
-    );
-  }
-
-  final List<Color> _buttons = List.filled(6, _defaultColor);
-  static const Color _defaultColor = Colors.grey;
-  static const Color _selectedColor = Colors.amber;
+class _HomePageState extends State<HomePage> {
+  Color activeColor = Colors.orange;
+  Color inActiveColor = Colors.grey;
+  bool btnPress = false;
+  void showColor() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Size Selector'),
-        centerTitle: true,
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildButton('S', 0),
-                _buildButton('M', 1),
-                _buildButton('L', 2),
-                _buildButton('XL', 3),
+                GestureDetector(
+                  onTap: () {
+                    btnPress = true;
+                    setState(() {});
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 80,
+                    decoration: BoxDecoration(
+                        color: btnPress == true ? Colors.orange : Colors.grey,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Center(
+                      child: Text(
+                        'S',
+                        style: TextStyle(fontSize: 30, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    btnPress = true;
+                    setState(() {});
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 80,
+                    decoration: BoxDecoration(
+                        color: btnPress == true ? Colors.orange : Colors.grey,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Center(
+                      child: Text(
+                        'M',
+                        style: TextStyle(fontSize: 30, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    btnPress = true;
+                    setState(() {});
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 80,
+                    decoration: BoxDecoration(
+                        color: btnPress == true ? Colors.orange : Colors.grey,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Center(
+                      child: Text(
+                        'L',
+                        style: TextStyle(fontSize: 30, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    btnPress = true;
+                    setState(() {});
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 80,
+                    decoration: BoxDecoration(
+                        color: btnPress == true ? Colors.orange : Colors.grey,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Center(
+                      child: Text(
+                        'XL',
+                        style: TextStyle(fontSize: 30, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 30),
-                  child: _buildButton('XL', 4),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 25),
-                  child: _buildButton('XXL', 5),
-                ),
-              ],
-            )
+            //2nd row
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 12.0),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      btnPress = true;
+                      setState(() {});
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          color: btnPress == true ? Colors.orange : Colors.grey,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Center(
+                        child: Text(
+                          'XXL',
+                          style: TextStyle(fontSize: 30, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      btnPress = true;
+                      setState(() {});
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          color: btnPress == true ? Colors.orange : Colors.grey,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Center(
+                        child: Text(
+                          'XXXL',
+                          style: TextStyle(fontSize: 30, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
